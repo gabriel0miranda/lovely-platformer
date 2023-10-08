@@ -1,10 +1,18 @@
+function love.keypressed(key)
+    if key=="up" and player.playerCanJump then
+        player.playerCanJump = false
+        player.body:applyForce(0,-1000)
+        player.jumpCooldown = 0.5
+    end
+end
+
 function love.load()
     -- Creating the map
     map = require("world")
     surfaces = require("surface")
-    wall1 = surfaces:new({surfaceX=10,surfaceY=0,surfaceWidth=20,surfaceHeight=960})
-    wall2 = surfaces:new({surfaceX=490,surfaceY=0,surfaceWidth=20,surfaceHeight=960})
-    ground = surfaces:new({surfaceX=0,surfaceY=490,surfaceWidth=1000,surfaceHeight=20})
+    wall1 = surfaces:new({surfaceX=10,surfaceY=325,surfaceWidth=20,surfaceHeight=650})
+    wall2 = surfaces:new({surfaceX=640,surfaceY=325,surfaceWidth=20,surfaceHeight=650})
+    ground = surfaces:new({surfaceX=325,surfaceY=640,surfaceWidth=650,surfaceHeight=20})
     map:createWorld()
     ground:createSurface(map.world)
     wall1:createSurface(map.world)
@@ -16,18 +24,10 @@ function love.load()
     block = {}
     block.body = love.physics.newBody(map.world,200,550,"dynamic")
     block.shape = love.physics.newRectangleShape(0,0,100,50)
-    block.fixture = love.physics.newFixture(block.body,block.shape,1)
+    block.fixture = love.physics.newFixture(block.body,block.shape,0.4)
     -- Setting up graphics
     love.graphics.setBackgroundColor(0.30, 0.66, 0.87)
-    love.window.setMode(500,500)
-end
-
-function love.keypressed(key)
-    if key=="up" and player.playerCanJump then
-        player.playerCanJump = false
-        player.body:applyForce(0,-1000)
-        player.jumpCooldown = 0.5
-    end
+    love.window.setMode(650,650)
 end
 
 function love.update(dt)
@@ -49,5 +49,6 @@ function love.draw()
     wall1:drawSurface()
     wall2:drawSurface()
     player:drawPlayer()
-    love.graphics.polygon
+    love.graphics.setColor(0.20,0.20,0.20)
+    love.graphics.polygon("fill",block.body:getWorldPoints(block.shape:getPoints()))
 end

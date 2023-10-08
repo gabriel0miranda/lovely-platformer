@@ -1,9 +1,9 @@
 local player = {
-    width = 16,
-    height = 16,
     speed = 50,
     jumpCooldown = 2,
     image = love.graphics.newImage("assets/player.png"),
+    width = 16,
+    height = 16,
     playerCanJump = true,
     body = nil,
     shape = nil,
@@ -17,7 +17,9 @@ function player:createPlayer(world)
 end
 
 function player:drawPlayer()
-    love.graphics.draw(self.image, self.body:getX(), self.body:getY())
+    self.width = self.image:getWidth()
+    self.height = self.image:getHeight()
+    love.graphics.draw(self.image, self.body:getX(), self.body:getY(), 0, 2, 2, self.width/2, self.height/2)
 end
 
 return player
