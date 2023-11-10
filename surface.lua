@@ -3,6 +3,7 @@ local Surface = {
     surfaceY = 0,
     surfaceWidth = 500,
     surfaceHeight = 100,
+    rotation = 0,
     shape = {},
     body = {},
     fixture = {}
@@ -10,7 +11,7 @@ local Surface = {
 
 function Surface:createSurface(world)
     self.body = love.physics.newBody(world, self.surfaceX, self.surfaceY, "static")
-    self.shape = love.physics.newRectangleShape(self.surfaceWidth, self.surfaceHeight)
+    self.shape = love.physics.newRectangleShape(self.surfaceWidth, self.surfaceHeight, self.rotation)
     self.fixture = love.physics.newFixture(self.body, self.shape)
 end
 
