@@ -10,9 +10,9 @@ function love.load()
     -- Creating the map
     map = require("world")
     surfaces = require("surface")
-    wall1 = surfaces:new({surfaceX=10,surfaceY=325,surfaceWidth=20,surfaceHeight=650})
-    wall2 = surfaces:new({surfaceX=640,surfaceY=325,surfaceWidth=20,surfaceHeight=650})
-    ground = surfaces:new({surfaceX=325,surfaceY=640,surfaceWidth=650,surfaceHeight=20})
+    wall1 = surfaces:new({surfaceX=10,surfaceY=250,surfaceWidth=20,surfaceHeight=500})
+    wall2 = surfaces:new({surfaceX=490,surfaceY=250,surfaceWidth=20,surfaceHeight=500})
+    ground = surfaces:new({surfaceX=250,surfaceY=490,surfaceWidth=500,surfaceHeight=20})
     map:createWorld()
     ground:createSurface(map.world)
     wall1:createSurface(map.world)
@@ -22,12 +22,12 @@ function love.load()
     player:createPlayer(map.world)
     --Creating block
     block = {}
-    block.body = love.physics.newBody(map.world,200,550,"dynamic")
+    block.body = love.physics.newBody(map.world,200,400,"dynamic")
     block.shape = love.physics.newRectangleShape(0,0,100,50)
     block.fixture = love.physics.newFixture(block.body,block.shape,0.4)
     -- Setting up graphics
     love.graphics.setBackgroundColor(0.30, 0.66, 0.87)
-    love.window.setMode(650,650)
+    love.window.setMode(500,500)
 end
 
 function love.update(dt)
