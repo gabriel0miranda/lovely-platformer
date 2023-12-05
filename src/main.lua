@@ -22,7 +22,7 @@ function love.load()
     block.fixture = love.physics.newFixture(block.body,block.shape,0.4)
     -- Setting up graphics
     love.graphics.setBackgroundColor(0.30, 0.66, 0.87)
-    love.window.setMode(650,650)
+    love.window.setMode(500,500)
 end
 
 function love.update(dt)
